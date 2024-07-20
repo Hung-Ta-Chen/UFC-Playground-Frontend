@@ -24,7 +24,7 @@ function FighterList({ onSelectFighter, onSetFighters }) {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  });
 
   const handleSelectFighter = (fighter) => {
     setSelectedFighter(fighter);
