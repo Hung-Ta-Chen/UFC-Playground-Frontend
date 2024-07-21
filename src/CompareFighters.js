@@ -1,9 +1,34 @@
 import React from "react";
 
 function CompareFighters({ fighter1, onSelectFighter2, fighter2, fighters }) {
+  const handleSelectFighter2 = (event) => {
+    const selectedFighter = fighters.find(
+      (fighter) => fighter.id === parseInt(event.target.value, 10)
+    );
+    onSelectFighter2(selectedFighter);
+  };
+
   return (
     <div>
       <h2>Compare Fighters</h2>
+      <pre>{"\n"}</pre>
+      <div>
+        <select
+          onChange={handleSelectFighter2}
+          value={fighter2 ? fighter2.id : ""}
+          className="dropdown"
+        >
+          <option value="" disabled>
+            Select a fighter to compare
+          </option>
+          {fighters.map((fighter) => (
+            <option key={fighter.id} value={fighter.id}>
+              {fighter.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <pre>{"\n"}</pre>
       {fighter1 && fighter2 && (
         <div>
           <p>
@@ -61,19 +86,6 @@ function CompareFighters({ fighter1, onSelectFighter2, fighter2, fighters }) {
           </p>
         </div>
       )}
-      <div>
-        <ul>
-          {fighters.map((fighter) => (
-            <li
-              key={fighter.id}
-              onClick={() => onSelectFighter2(fighter)}
-              className={fighter2 === fighter ? "selected" : "unselected"}
-            >
-              {fighter.name}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }

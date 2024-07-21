@@ -13,8 +13,11 @@ function FighterDetails({ fighter }) {
   return (
     <div>
       <h2>Fighter Details</h2>
-      <p>Name: {fighter.name}</p>
-      <p>Intro: {fighter.intro}</p>
+      <pre>{"\n"}</pre>
+      <p>
+        <b>{fighter.name}</b>
+      </p>
+      <p>{fighter.intro}</p>
       <p>Age: {fighter.age}</p>
       <p>Height: {fighter.height}</p>
       <p>Reach: {fighter.reach}</p>

@@ -55,8 +55,11 @@ function MatchPrediction({ fighter1, fighter2 }) {
   return (
     <div>
       <h2>Match Prediction</h2>
+      <pre>{"\n"}</pre>
       <p>
-        {fighter1.name} vs {fighter2.name}
+        <h3>
+          {fighter1.name} vs {fighter2.name}
+        </h3>
       </p>
       <button onClick={handlePredict} disabled={loading}>
         {loading ? "Predicting..." : "Predict"}
@@ -64,7 +67,10 @@ function MatchPrediction({ fighter1, fighter2 }) {
       {error && <p className="error">Error: {error}</p>}
       {showPrediction && prediction && (
         <div>
-          <p>Predicted Winner: {prediction}</p>
+          <pre>{"\n"}</pre>
+          <p>
+            <h3>Predicted Winner: {prediction}</h3>
+          </p>
           {reason && <p>Reason: {reason}</p>}
         </div>
       )}

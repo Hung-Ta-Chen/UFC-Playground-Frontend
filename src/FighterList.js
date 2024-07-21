@@ -26,9 +26,12 @@ function FighterList({ onSelectFighter, onSetFighters }) {
       });
   });
 
-  const handleSelectFighter = (fighter) => {
-    setSelectedFighter(fighter);
-    onSelectFighter(fighter);
+  const handleSelectFighter = (event) => {
+    const selectedFighter = fighters.find(
+      (fighter) => fighter.id === parseInt(event.target.value, 10)
+    );
+    setSelectedFighter(selectedFighter);
+    onSelectFighter(selectedFighter);
   };
 
   if (loading) {
@@ -42,17 +45,21 @@ function FighterList({ onSelectFighter, onSetFighters }) {
   return (
     <div>
       <h2>Fighter List</h2>
-      <ul>
+      <pre>{"\n"}</pre>
+      <select
+        onChange={handleSelectFighter}
+        value={selectedFighter ? selectedFighter.id : ""}
+        className="dropdown"
+      >
+        <option value="" disabled>
+          Select a fighter
+        </option>
         {fighters.map((fighter) => (
-          <li
-            key={fighter.id}
-            onClick={() => handleSelectFighter(fighter)}
-            className={selectedFighter === fighter ? "selected" : "unselected"}
-          >
+          <option key={fighter.id} value={fighter.id}>
             {fighter.name}
-          </li>
+          </option>
         ))}
-      </ul>
+      </select>
     </div>
   );
 }
